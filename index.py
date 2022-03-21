@@ -133,32 +133,46 @@ with open('channel_messages.json') as f:
         # Function that gets the model we wanna check and the maximum price we want
         def check_price(model,price):
             if (contains_word(mensaje, model)):
-                if (precio <= price):
-                    all_messages.append(mensaje)
-                    
+                if (contains_word(mensaje, 'LHR')):
+                    if (precio <= price*0.75):
+                        all_messages.append(mensaje)
+                else:
+                    if (precio <= price):
+                        all_messages.append(mensaje)
                 return True
         
-        if (check_price('#RTX3060', 420)): ''' 35MH/s -> 12€/MH '''
+        if (check_price('#RTX3060', 420)): 
+            ''' 35MH/s -> 12€/MH '''
             continue
-        if (check_price('#RTX3060TI', 696)): ''' 58MH/s -> 12€/MH '''
+        if (check_price('#RTX3060TI', 696)): 
+            ''' 58MH/s -> 12€/MH '''
             continue
-        if (check_price('#RTX3070', 696)): ''' 58MH/s -> 12€/MH '''
+        if (check_price('#RTX3070', 696)): 
+            ''' 58MH/s -> 12€/MH '''
             continue
-        if (check_price('#RTX3070TI', 660)): ''' 55MH/s -> 12€/MH '''
+        if (check_price('#RTX3070TI', 660)): 
+            ''' 55MH/s -> 12€/MH '''
             continue
-        if (check_price('#RTX3080', 1092)): ''' 91MH/s -> 12€/MH '''
+        if (check_price('#RTX3080', 1092)): 
+            ''' 91MH/s -> 12€/MH '''
             continue
-        if (check_price('#RTX3080TI', 1020)): ''' 85MH/s -> 12€/MH '''
+        if (check_price('#RTX3080TI', 1020)): 
+            ''' 85MH/s -> 12€/MH '''
             continue
-        if (check_price('#RTX3090', 1368)): ''' 114MH/s -> 12€/MH '''
+        if (check_price('#RTX3090', 1368)): 
+            ''' 114MH/s -> 12€/MH '''
             continue
-        if (check_price('#RX6600', 384)): ''' 32MH/s -> 12€/MH '''
+        if (check_price('#RX6600', 384)): 
+            ''' 32MH/s -> 12€/MH '''
             continue
-        if (check_price('#RX6700', 576)): ''' 48MH/s -> 12€/MH '''
+        if (check_price('#RX6700', 576)): 
+            ''' 48MH/s -> 12€/MH '''
             continue
-        if (check_price('#RX6800', 768)): ''' 64MH/s -> 12€/MH '''
+        if (check_price('#RX6800', 768)): 
+            ''' 64MH/s -> 12€/MH '''
             continue
-        if (check_price('#RX6900', 768)): ''' 64MH/s -> 12€/MH '''
+        if (check_price('#RX6900', 768)): 
+            ''' 64MH/s -> 12€/MH '''
             continue
         
     with open('messages.json', 'w') as outfile:
