@@ -138,27 +138,27 @@ with open('channel_messages.json') as f:
                     
                 return True
         
-        if (check_price('#RTX3060', 550)):
+        if (check_price('#RTX3060', 420)): ''' 35MH/s -> 12€/MH '''
             continue
-        if (check_price('#RTX3060TI', 600)):
+        if (check_price('#RTX3060TI', 696)): ''' 58MH/s -> 12€/MH '''
             continue
-        if (check_price('#RTX3070', 650)):
+        if (check_price('#RTX3070', 696)): ''' 58MH/s -> 12€/MH '''
             continue
-        if (check_price('#RTX3070TI', 600)):
+        if (check_price('#RTX3070TI', 660)): ''' 55MH/s -> 12€/MH '''
             continue
-        if (check_price('#RTX3080', 1000)):
+        if (check_price('#RTX3080', 1092)): ''' 91MH/s -> 12€/MH '''
             continue
-        if (check_price('#RTX3080TI', 1000)):
+        if (check_price('#RTX3080TI', 1020)): ''' 85MH/s -> 12€/MH '''
             continue
-        if (check_price('#RTX3090', 1400)):
+        if (check_price('#RTX3090', 1368)): ''' 114MH/s -> 12€/MH '''
             continue
-        if (check_price('#RX6600', 470)):
+        if (check_price('#RX6600', 384)): ''' 32MH/s -> 12€/MH '''
             continue
-        if (check_price('#RX6700', 600)):
+        if (check_price('#RX6700', 576)): ''' 48MH/s -> 12€/MH '''
             continue
-        if (check_price('#RX6800', 850)):
+        if (check_price('#RX6800', 768)): ''' 64MH/s -> 12€/MH '''
             continue
-        if (check_price('#RX6900', 850)):
+        if (check_price('#RX6900', 768)): ''' 64MH/s -> 12€/MH '''
             continue
         
     with open('messages.json', 'w') as outfile:
