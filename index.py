@@ -140,6 +140,11 @@ with open('channel_messages.json') as f:
                         all_messages.append(mensaje)
                 return True
         
+        if (check_price('#GTX1660', 300)): 
+            ''' 28MH/s -> 12€/MH '''
+        if (check_price('#RTX2060', 360)): 
+            ''' 30MH/s -> 12€/MH '''
+            continue
         if (check_price('#RTX3060', 420)): 
             ''' 35MH/s -> 12€/MH '''
             continue
