@@ -45,7 +45,6 @@ api_hash = str(api_hash)
 
 phone = config['Telegram']['phone']
 username = config['Telegram']['username']
-token = config['Telegram']['token']
 channel = 'https://t.me/StockerGPUs'
 
 # Create the client and connect
