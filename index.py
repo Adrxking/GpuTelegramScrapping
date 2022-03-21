@@ -1,12 +1,14 @@
 import configparser
 import json
 import os
-from datetime import datetime
+import re
+import telegram_send
 
+from datetime import datetime
 from telethon import TelegramClient
 from telethon.errors import SessionPasswordNeededError
 from telethon.tl.functions.messages import (GetHistoryRequest)
-from telethon.tl.types import (PeerChannel)
+from telethon.tl.types import PeerChannel
 
 if os.path.exists("channel_messages.json"):
       os.remove("channel_messages.json")
@@ -43,6 +45,7 @@ api_hash = str(api_hash)
 
 phone = config['Telegram']['phone']
 username = config['Telegram']['username']
+token = config['Telegram']['token']
 channel = 'https://t.me/StockerGPUs'
 
 # Create the client and connect
@@ -103,15 +106,64 @@ async def main(phone):
 
 with client:
     client.loop.run_until_complete(main(phone))
-    
+
+# Function for getting a word inside a String    
+def contains_word(s, w):
+    return f' {w} ' in f' {s} '
+
 # Get the message column from the file
 with open('channel_messages.json') as f:
     data = json.load(f)
 
     all_messages = []
     for message in data:
+        mensaje = message['message']
+        precio = ''
+        # Get the 7 characters after Price: substring
+        match = re.search(r'(?<=Precio: ).{7}', mensaje)
+        if match:
+            precio = match.group(0).replace('€', '')
+            precio = precio.replace(' ', '')
+            precio = float(precio.replace(',','.'))
         
-        all_messages.append(message['message'])
-
+        # Check if there is a message without price
+        if (type(precio) is str):
+            continue
+        
+        # Function that gets the model we wanna check and the maximum price we want
+        def check_price(model,price):
+            if (contains_word(mensaje, model)):
+                if (precio <= price):
+                    all_messages.append(mensaje)
+                    
+                return True
+        
+        if (check_price('#RTX3060', 550)):
+            continue
+        if (check_price('#RTX3060TI', 600)):
+            continue
+        if (check_price('#RTX3070', 650)):
+            continue
+        if (check_price('#RTX3070TI', 600)):
+            continue
+        if (check_price('#RTX3080', 1000)):
+            continue
+        if (check_price('#RTX3080TI', 1000)):
+            continue
+        if (check_price('#RTX3090', 1400)):
+            continue
+        if (check_price('#RX6600', 470)):
+            continue
+        if (check_price('#RX6700', 600)):
+            continue
+        if (check_price('#RX6800', 850)):
+            continue
+        if (check_price('#RX6900', 850)):
+            continue
+        
     with open('messages.json', 'w') as outfile:
         json.dump(all_messages, outfile, cls=DateTimeEncoder)
+        
+with open('messages.json') as f:
+    data = json.load(f)
+    telegram_send.send(messages=data)
